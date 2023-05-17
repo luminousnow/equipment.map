@@ -11,7 +11,7 @@ function initGoogleSheetsAPI(callback) {
   gapi.load("client", function () {
     gapi.client
       .init({
-        apiKey: "AIzaSyBDxcb25lKMSFOSQC84s9OJxg556wy0qXE",
+        apiKey: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
         discoveryDocs: [
           "https://sheets.googleapis.com/$discovery/rest?version=v4",
         ],
@@ -24,7 +24,7 @@ function initGoogleSheetsAPI(callback) {
 function getGoogleSheetsData(callback) {
   gapi.client.sheets.spreadsheets.values
     .get({
-      spreadsheetId: "1tq0XIQnsdwc6Oibx1ur5V9aIaNAP5Ied4QFEGSO7XIQ",
+      spreadsheetId: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
       range: "Sheet1!A2:D", // Змініть "Sheet1" на назву вашого аркуша, якщо це необхідно
     })
     .then(function (response) {
