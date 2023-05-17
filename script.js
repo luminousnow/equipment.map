@@ -33,72 +33,11 @@ function getGoogleSheetsData(callback) {
     });
 }
 
-// // Функція для створення мапи та додавання маркерів
-// function createMap(data) {
-//   var map = L.map("map").setView([48.3794, 31.1656], 6); // Координати центру мапи (можете змінити на будь-які) та зум (6)
-
-//   L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-//     attribution:
-//       'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
-//     maxZoom: 18,
-//   }).addTo(map);
-
-//   // Прохід по даних з таблиці та додавання маркерів
-//   for (var i = 0; i < data.length; i++) {
-//     var city = data[i][0];
-//     var name = data[i][1];
-//     var latitude = parseFloat(data[i][2]);
-//     var longitude = parseFloat(data[i][3]);
-
-//     var marker = L.marker([latitude, longitude]).addTo(map);
-
-//     marker.bindPopup(city + " - " + name);
-//   }
-// }
-
-// // Завантажуємо Google Sheets API та ініціалізуємо його
-// loadGoogleSheetsAPI(function () {
-//   initGoogleSheetsAPI(function () {
-//     // Отримуємо дані з Google Sheets та створюємо мапу
-//     getGoogleSheetsData(function (data) {
-//       createMap(data);
-//     });
-//   });
-// });
-
 // Функція для створення мапи та додавання маркерів
 function createMap(data) {
   var map = L.map("map").setView([48.3794, 31.1656], 6); // Координати центру мапи (можете змінити на будь-які) та зум (6)
 
-  var osmLayer = L.tileLayer(
-    "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
-    {
-      attribution:
-        'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
-      maxZoom: 18,
-    }
-  );
-
-  var grayscaleLayer = L.tileLayer(
-    "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
-    {
-      attribution:
-        'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
-      maxZoom: 18,
-      id: "osm",
-      accessToken: "https://api.openstreetmap.org/",
-      tileSize: 512,
-      zoomOffset: -1,
-      grayscale: true,
-    }
-  );
-
-  var baseMaps = {
-    OpenStreetMap: osmLayer,
-    Grayscale: grayscaleLayer,
-  };
-
-  osmLayer.addTo(map);
+  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png").addTo(map);
 
   // Прохід по даних з таблиці та додавання маркерів
   for (var i = 0; i < data.length; i++) {
@@ -111,8 +50,6 @@ function createMap(data) {
 
     marker.bindPopup(city + " - " + name);
   }
-
-  L.control.layers(baseMaps).addTo(map);
 }
 
 // Завантажуємо Google Sheets API та ініціалізуємо його
